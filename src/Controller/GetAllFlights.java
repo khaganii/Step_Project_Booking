@@ -3,9 +3,7 @@ package Controller;
 import DAO.Dao;
 import Libraries.Flights;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -29,8 +27,16 @@ public class GetAllFlights implements Dao{
     return makeFlight(arrayList);
   }
 
-  public void write() {
-
+  public void write(String s) {
+    File file = new File("C:\\Users\\khagani\\IdeaProjects\\StepPtojectBooking\\src\\Libraries\\all_flights.txt");
+    try {
+      file.delete();
+      FileWriter fileWriter = new FileWriter(file);
+      fileWriter.write(s);
+      fileWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public String represent(Flights flight){
